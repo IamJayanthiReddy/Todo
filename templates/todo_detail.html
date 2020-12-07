@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+{% extends "base.html" %}
+{% block content %}
+        {% if request.user.is_authenticated %}
+                Hello {{ request.user.username }}
+
+        {% else %}
+                Hello Guest user
+
+        {% endif %}
+        <p><a href="/{{ todo.id }}/update/">Update this Todo</a></p>
+        <ul>
+            The todo name is {{ todo.name }} and due date is {{ todo.due_date }}
+        </ul>
+        {% if todo.description %}
+        <ul>Description: {{ todo.description }}</ul>
+        {% else %}
+            <p> No description available for this todo.</p>
+            <p>If you want add a description, <a href="/{{ todo.id }}/update/">Click here</a></p><br>
+            <a href="/{{ todo.id }}/delete/">Delete this Todo</a>
+
+        {% endif %}
+        {% endblock content %}
